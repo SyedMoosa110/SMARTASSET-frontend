@@ -38,10 +38,11 @@ const AssetDetail = () => {
   }, [id]);
 
   const handleDownload = () => {
-    if (!asset?.qr_code) return;
+    const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${encodeURIComponent(`https://smartasset-frontend-qsnf.vercel.app/asset/${asset.id}`)}`;
     const link = document.createElement('a');
-    link.href = asset.qr_code.startsWith('http') ? asset.qr_code : `${API_BASE_URL}${asset.qr_code}`;
+    link.href = qrUrl;
     link.download = `QR-${asset.serial_number}.png`;
+    link.target = "_blank";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -243,13 +244,11 @@ const AssetDetail = () => {
             >
               <div className="absolute inset-0 bg-violet-600/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-[1.5rem]"></div>
               <div className="relative z-10">
-                {asset?.qr_code && (
-                  <img 
-                    src={asset.qr_code.startsWith('http') ? asset.qr_code : `${API_BASE_URL}${asset.qr_code}`} 
-                    alt="Asset QR" 
-                    className="w-full aspect-square rounded-2xl mb-8 border border-white/10 shadow-2xl invert opacity-90 p-4 bg-white/5"
-                  />
-                )}
+                <img 
+                  src={`https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(`https://smartasset-frontend-qsnf.vercel.app/asset/${asset.id}`)}`} 
+                  alt="Asset QR" 
+                  className="w-full aspect-square rounded-2xl mb-8 border border-white/10 shadow-2xl invert opacity-90 p-4 bg-white/5"
+                />
                 
                 <h3 className="text-xs font-black text-slate-500 uppercase tracking-[0.2em] mb-6 flex items-center gap-2">
                   <div className="w-1 h-1 bg-violet-500 rounded-full"></div> Deployment Record
