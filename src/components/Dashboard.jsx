@@ -254,7 +254,7 @@ const Dashboard = () => {
                   {/* QR Mini Preview */}
                   <div className="absolute top-20 right-6 w-16 h-16 opacity-10 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 pointer-events-none z-0">
                     <img 
-                      src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(`https://smartasset-frontend-qsnf.vercel.app/asset/${asset.id}`)}`} 
+                      src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(`${window.location.origin}/asset/${asset.id}`)}`} 
                       alt="QR" 
                       className="w-full h-full object-cover rounded-xl invert brightness-200"
                     />

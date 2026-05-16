@@ -38,7 +38,7 @@ const AssetDetail = () => {
   }, [id]);
 
   const handleDownload = () => {
-    const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${encodeURIComponent(`https://smartasset-frontend-qsnf.vercel.app/asset/${asset.id}`)}`;
+    const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${encodeURIComponent(`${window.location.origin}/asset/${asset.id}`)}`;
     const link = document.createElement('a');
     link.href = qrUrl;
     link.download = `QR-${asset.serial_number}.png`;
@@ -245,7 +245,7 @@ const AssetDetail = () => {
               <div className="absolute inset-0 bg-violet-600/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-[1.5rem]"></div>
               <div className="relative z-10">
                 <img 
-                  src={`https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(`https://smartasset-frontend-qsnf.vercel.app/asset/${asset.id}`)}`} 
+                  src={`https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(`${window.location.origin}/asset/${asset.id}`)}`} 
                   alt="Asset QR" 
                   className="w-full aspect-square rounded-2xl mb-8 border border-white/10 shadow-2xl invert opacity-90 p-4 bg-white/5"
                 />
